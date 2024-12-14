@@ -1,8 +1,11 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
+import { EnvConfiguration } from './config/app.config';
 
 async function bootstrap() {
+  const { port } = EnvConfiguration();
+
   const app = await NestFactory.create(AppModule);
   //el global prefix para que las rutas empiecen con /api/v2/...
   app.setGlobalPrefix('api/v2');
@@ -18,6 +21,7 @@ async function bootstrap() {
       },
     }),
   );
-  await app.listen(process.env.PORT ?? 3000);
+  await app.listen(port);
+  console.log(`Application running on port ${port}`);
 }
 bootstrap();
