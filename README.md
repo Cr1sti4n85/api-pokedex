@@ -15,11 +15,6 @@
 
    ` docker-compose up -d`
 
-## Stack usado
-
-- Nestjs
-- MongoDB
-
 5. Clonar el archivo **.env.template** y renombrarlo a **.env**
 
 6. Llenar las variables de entorno definidas en el **.env**
@@ -30,3 +25,18 @@
 8. Reconstruir base de datos con la semilla
 
 `http://localhost:3000/api/v2/seed`
+
+## Stack usado
+
+- Nestjs
+- MongoDB
+
+# Production build Docker
+
+1. Crear el archivo **.env.prod**
+2. Llenar las variables de entorno de prod
+3. Crear la nueva imagen:
+
+```
+docker-compose -f docker-compose.prod.yaml --env-file .env.prod up --build
+```
